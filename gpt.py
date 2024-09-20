@@ -24,7 +24,6 @@ class gpt:
         
         reply = chat.choices[0].message.content
         
-        print(f"ChatGPT: {reply}")
         self.messages.append({"role": "assistant", "content": reply})
 
         return reply
