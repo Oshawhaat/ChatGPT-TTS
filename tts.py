@@ -1,19 +1,19 @@
-from TTS.api import TTS
-import simpleaudio
+from gtts import gTTS
+from pygame import mixer
+
 import threading
 import os
+import time
 
 
 def _play_stack():
         count = 0
         while True: 
-                while not f"output{count}.wav" in message_stack:
-                        pass
+                if not message_stack:
+                        continue
 
                 play_sound_file(message_stack.pop())
                 count += 1
-
-tts = TTS(model_name="tts_models/en/jenny/jenny")
 
 message_stack = []
 
@@ -23,8 +23,11 @@ sound_thread.start()
 
 def text_to_file(args: tuple) -> str:
         count, text = args
-        path = f"output{count}.wav"
-        tts.tts_to_file(text=text, file_path=path)
+        
+        path = f"output{count}.mp3"
+        file = gTTS(text=text)
+        
+        file.save(path)
 
         print("Created sound file: " + path)
 
@@ -32,9 +35,14 @@ def text_to_file(args: tuple) -> str:
 
 def play_sound_file(path) -> None:
         print("started playing: " + path)
-        wave_obj = simpleaudio.WaveObject.from_wave_file(path)
-        play_obj = wave_obj.play()
-        play_obj.wait_done()
+        
+        mixer.init()
+        mixer.music.load(path)
+        mixer.music.play()
+        
+        while mixer.music.get_busy():
+                time.sleep(1)
+        
         os.remove(path)
         print("done playing: " + path)
 
