@@ -44,3 +44,7 @@ Lib
 Scripts
 share
 pyvenv.cfg
+
+# Other unwanted files #
+########################
+key.txt
