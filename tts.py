@@ -6,6 +6,8 @@ import os
 import time
 
 
+MESSAGE_DELAY: float = 1
+
 def _play_stack():
         count = 0
         while True: 
@@ -29,22 +31,21 @@ def text_to_file(args: tuple) -> str:
         
         file.save(path)
 
-        print("Created sound file: " + path)
-
         return path
 
 def play_sound_file(path) -> None:
-        print("started playing: " + path)
+        print("now playing: " + path)
         
         mixer.init()
         mixer.music.load(path)
         mixer.music.play()
         
         while mixer.music.get_busy():
-                time.sleep(1)
+                time.sleep(.1)
+        
+        time.sleep(MESSAGE_DELAY)
         
         os.remove(path)
-        print("done playing: " + path)
 
 def add_to_stack(text: str):
         path = text_to_file(text)
