@@ -49,3 +49,4 @@ pyvenv.cfg
 # Other unwanted files #
 ########################
 key.txt
+*.mp3
