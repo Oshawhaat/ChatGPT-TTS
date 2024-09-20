@@ -30,7 +30,9 @@ def main():
                         
                 response_list = new_response_list
         
-        response_list = [x.removeprefix(" ") for x in response_list if x and x not in split_points]
+        response_list = [x.removeprefix(" ") for x in response_list]
+        response_list = [x for x in response_list if x and x not in split_points]
+        
         
         for ind_sentence in enumerate(response_list):
                 tts.add_to_stack(ind_sentence)

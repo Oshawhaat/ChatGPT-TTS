@@ -33,9 +33,13 @@ def text_to_file(args: tuple) -> str:
         count, text = args
         
         path = f"output{count}.mp3"
-        file = gTTS(text=text)
         
-        file.save(path)
+        try:
+                file = gTTS(text=text)
+                file.save(path)
+        except AssertionError:
+                print(f"ERROR WITH TTS FOR MESSAGE: [{text}]")
+                quit()
 
         return path
 
