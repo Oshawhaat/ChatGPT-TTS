@@ -38,6 +38,7 @@ Thumbs.db
 
 # Python venv files #
 #####################
+bin
 __pycache__
 Include
 Lib
