@@ -13,8 +13,14 @@ def _play_stack():
         while True: 
                 if not message_stack:
                         continue
-
-                play_sound_file(message_stack.pop())
+                
+                path, text = message_stack.pop()
+                
+                print()
+                print(f"[now playing: {path}]")
+                print(f"\"{text}\"")
+                
+                play_sound_file(path)
                 count += 1
 
 message_stack = []
@@ -34,8 +40,6 @@ def text_to_file(args: tuple) -> str:
         return path
 
 def play_sound_file(path) -> None:
-        print("now playing: " + path)
-        
         mixer.init()
         mixer.music.load(path)
         mixer.music.play()
@@ -47,7 +51,7 @@ def play_sound_file(path) -> None:
         
         os.remove(path)
 
-def add_to_stack(text: str):
-        path = text_to_file(text)
+def add_to_stack(ind_text: str):
+        path = text_to_file(ind_text)
 
-        message_stack.insert(0, path)
+        message_stack.insert(0, (path, ind_text[1]))

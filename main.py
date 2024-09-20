@@ -32,9 +32,6 @@ def main():
         
         response_list = [x.removeprefix(" ") for x in response_list if x and x not in split_points]
         
-        for resp in response_list:
-                print(f"\"{resp}\"")
-        
         for ind_sentence in enumerate(response_list):
                 tts.add_to_stack(ind_sentence)
 
