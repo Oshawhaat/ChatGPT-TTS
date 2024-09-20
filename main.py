@@ -15,11 +15,36 @@ test_message = """The meaning of life is a profound and philosophical question t
 
 Ultimately, the meaning of life may be subjective and can differ dramatically from one person to another. It often involves a combination of personal values, experiences, and beliefs."""
 
+
+splits = [
+        ".",
+        "!",
+        "?",
+        "[",
+        "]",
+]
+
 def main():
         _gpt = gpt()
 
         response = "hello world!" #test_message #_gpt.ask_msg()
-        response_list: list = response.split(". ")
+        response_list = [response]
+        
+        for split_str in splits:
+                new_response_list = []
+                for resp in response_list:
+                        split_list = resp.split(split_str)
+                        if len(split_list) > 1:
+                                split_list[0] += split_str
+                        
+                        print(f"\"{resp}\" splits to {split_list}")
+                        new_response_list += split_list
+                        
+                response_list = new_response_list
+        
+        response_list = [x for x in response_list if x]
+        
+        print(response_list)
         
         #with multiprocessing.Pool(5) as p:
                 #p.map(tts.add_to_stack, enumerate(response_list))
