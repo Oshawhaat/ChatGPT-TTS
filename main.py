@@ -7,8 +7,6 @@ split_points = [
         "!",
         "?",
         "\n",
-        "[",
-        "]",
 ]
 
 def main():
