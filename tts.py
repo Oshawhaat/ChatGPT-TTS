@@ -14,7 +14,7 @@ def _play_stack():
                 if not message_stack:
                         continue
                 
-                path, text = message_stack.pop()
+                path, text = message_stack[-1]
                 
                 print()
                 print(f"[now playing: {path}]")
@@ -22,6 +22,8 @@ def _play_stack():
                 
                 play_sound_file(path)
                 count += 1
+                
+                message_stack.pop()
 
 message_stack = []
 
@@ -59,3 +61,7 @@ def add_to_stack(ind_text: str):
         path = text_to_file(ind_text)
 
         message_stack.insert(0, (path, ind_text[1]))
+
+def add_list_to_stack(ind_list: list):
+        for ind_sentence in enumerate(ind_list):
+                add_to_stack(ind_sentence)
