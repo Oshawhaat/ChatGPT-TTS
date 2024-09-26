@@ -12,6 +12,7 @@ SPLIT_POINTS = [
 ]
 
 SPLIT_BLACKLIST = [
+#       ("split str", "dont split if followed by this")
         ( ".", "\"" ),
         ( "!", "\"" ),
         ( "?", "\"" ),
