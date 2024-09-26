@@ -7,7 +7,7 @@ class gpt:
             openai.api_key = key_file.read()
 
         with open("ai_instructions.txt", "r") as instructions_file:
-            ai_instructions = instructions_file.read
+            ai_instructions = instructions_file.read()
         
         self.messages = [ {
                 "role": "system",
