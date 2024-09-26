@@ -12,6 +12,7 @@ SPLIT_POINTS = [
 ]
 
 SPLIT_BLACKLIST = [
+#       ("split str", "dont split if followed by this")
         ( ".", "\"" ),
         ( "!", "\"" ),
         ( "?", "\"" ),
@@ -33,7 +34,7 @@ def main():
                 
                 while not tts.message_stack:
                         time.sleep(1)
-                time.sleep(5)
+                time.sleep(2)
 
 
 def split_response(response: str, split_points: list, split_blacklist: list):
