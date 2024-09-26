@@ -3,17 +3,15 @@ import openai
 
 class gpt:
     def __init__(self) -> None:
-        key_file = open("key.txt", "r")
-        openai.api_key = key_file.read()
+        with open("key.txt", "r") as key_file:
+            openai.api_key = key_file.read()
 
+        with open("ai_instructions.txt", "r") as instructions_file:
+            ai_instructions = instructions_file.read
+        
         self.messages = [ {
                 "role": "system",
-                "content": 
-                    """
-                        You are a comedy robot who tell jokes based on the prompt.
-                        Do not start your messages with something like \"Sure\", just go straight into what is asked.
-                        Make sure the jokes are original and as funny as possible.
-                    """
+                "content": ai_instructions
             } ]
 
     def ask_msg(self, message) -> str:
