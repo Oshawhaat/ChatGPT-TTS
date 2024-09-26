@@ -16,9 +16,7 @@ class gpt:
                     """
             } ]
 
-    def ask_msg(self) -> str:
-
-        message = input("\nWhat kind of joke would you like? : ")
+    def ask_msg(self, message) -> str:
         
         if not message:
             print("Invalid message!")

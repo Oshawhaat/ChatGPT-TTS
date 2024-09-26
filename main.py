@@ -25,8 +25,15 @@ def main():
         while True:
                 if tts.message_stack:
                         continue
+                
+                message = input("\nWhat kind of joke would you like? : ")
+                
+                if message == "r":
+                        _gpt = gpt()
+                if message == "q":
+                        quit()
 
-                raw_response = _gpt.ask_msg()
+                raw_response = _gpt.ask_msg(message)
                 
                 response_list = process_response(raw_response)
                 
@@ -65,6 +72,8 @@ def split_lines(response: str, split_str: str, keep_at_end: bool, split_blacklis
         if keep_at_end and len(split_list) > 1:
                 for ind in range(0, len(split_list) - 1):
                         split_list[ind] += split_str
+        
+        return split_list
 
 
 def clean_response_list(responses: list, str_blacklists: list):
