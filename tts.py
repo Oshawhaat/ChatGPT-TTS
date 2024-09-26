@@ -27,7 +27,7 @@ def _play_stack():
 
 message_stack = []
 
-sound_thread = threading.Thread(target=_play_stack)
+sound_thread = threading.Thread(target=_play_stack, daemon=True)
 sound_thread.start()
 
 
