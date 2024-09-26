@@ -41,24 +41,29 @@ def split_response(response: str, split_points: list, split_blacklist: list):
         
         for split_str, keep_at_end in split_points:
                 new_response_list = []
-                for resp in response_list:
-                        split_list = resp.split(split_str)
+                
+                for response in response_list:
+                        split_response = split_lines(response, split_str, keep_at_end, split_blacklist)
                         
-                        for first, last in split_blacklist:
-                                for ind in range(len(split_list) - 1):
-                                        if split_list[ind].endswith(first) and split_list[ind+1].startswith(last):
-                                                split_list[ind] += split_list[ind+1]
-                                                del split_list[ind+1]
-                        
-                        if keep_at_end and len(split_list) > 1:
-                                for ind in range(0, len(split_list) - 1):
-                                        split_list[ind] += split_str
-                        
-                        new_response_list += split_list
+                        new_response_list += split_response
                 
                 response_list = new_response_list
         
         return response_list
+
+
+def split_lines(response: str, split_str: str, keep_at_end: bool, split_blacklist: list):
+        split_list = response.split(split_str)
+        
+        for first, last in split_blacklist:
+                for ind in range(len(split_list) - 1):
+                        if split_list[ind].endswith(first) and split_list[ind+1].startswith(last):
+                                split_list[ind] += split_list[ind+1]
+                                del split_list[ind+1]
+        
+        if keep_at_end and len(split_list) > 1:
+                for ind in range(0, len(split_list) - 1):
+                        split_list[ind] += split_str
 
 
 def clean_response_list(responses: list, str_blacklists: list):
