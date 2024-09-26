@@ -30,8 +30,10 @@ def main():
                 
                 if message == "r":
                         _gpt = gpt()
+                        continue
                 if message == "q":
                         quit()
+                        break
 
                 raw_response = _gpt.ask_msg(message)
                 
