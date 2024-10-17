@@ -24,11 +24,7 @@ def main():
         key_file_path = sys.argv[1]
 
         with open(key_file_path) as key_file:
-                try:
-                        key = key_file.read()
-                except(FileNotFoundError):
-                        print("Could not find key file! did you pass one in when running the script?")
-                        quit()
+                key = key_file.read()
 
         _gpt = gpt(key)
         
