@@ -3,7 +3,7 @@ import openai
 
 class gpt:
     def __init__(self) -> None:
-        with open("key.txt", "r") as key_file:
+        with open("./key.txt", "r") as key_file:
             openai.api_key = key_file.read()
 
         with open("ai_instructions.txt", "r") as instructions_file:
