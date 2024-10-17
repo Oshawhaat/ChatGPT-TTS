@@ -1,10 +1,12 @@
 from gtts import gTTS
-from pygame import mixer
+import pygame
 
 import threading
 import os
 import time
 
+
+pygame.init()
 
 MESSAGE_DELAY: float = 1
 
@@ -46,11 +48,11 @@ def text_to_file(args: tuple) -> str:
         return path
 
 def play_sound_file(path) -> None:
-        mixer.init()
-        mixer.music.load(path)
-        mixer.music.play()
+        pygame.mixer.init()
+        pygame.mixer.music.load(path)
+        pygame.mixer.music.play()
         
-        while mixer.music.get_busy():
+        while pygame.mixer.music.get_busy():
                 time.sleep(.1)
         
         time.sleep(MESSAGE_DELAY)
