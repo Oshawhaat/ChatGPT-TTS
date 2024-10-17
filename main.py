@@ -1,6 +1,7 @@
 from gpt import gpt
 import tts
 import time
+import sys
 
 
 SPLIT_POINTS = [
@@ -20,7 +21,12 @@ SPLIT_BLACKLIST = [
 
 
 def main():
-        _gpt = gpt()
+        key_file_path = sys.argv[1]
+
+        with open(key_file_path) as key_file:
+                key = key_file.read()
+
+        _gpt = gpt(key)
         
         while True:
                 if tts.message_stack:
